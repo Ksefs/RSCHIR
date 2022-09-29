@@ -1,0 +1,20 @@
+version: '3.7'
+services:
+  db:
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: GLEB
+    volumes:
+    - "./initdb/:/docker-entrypoint-initdb.d"
+    - db_volume:/var/lib/mysql
+  www:
+    depends_on:
+    - db
+    build: ./Dockerfile
+    volumes:
+    - "./phpdir/:/var/www/html"
+    ports:
+    - 80:80
+volumes:
+  db_volume:
