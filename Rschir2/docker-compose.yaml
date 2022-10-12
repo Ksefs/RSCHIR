@@ -1,0 +1,8 @@
+services:
+  all:
+    build: /
+    ports:
+      - 8080:80
+    volumes:
+      - ./all:/var/www/html
+ 
